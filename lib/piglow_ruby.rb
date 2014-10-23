@@ -44,12 +44,32 @@ module PiglowRuby
             (0..2).each do |i|
                 @bus.write(DEVICE_ADDRESS, LEDS[3*ring+i], value)
             end
+            update
         end
 
         def color(color, value)
             (0..2).each do |i|
                 @bus.write(DEVICE_ADDRESS, LEDS[3*COLORS.index(color)+i], value)
             end
+            update
+        end
+
+        def leg(leg, value)
+            LEDS.each_slice(3).each do |ring|
+                @bus.write(DEVICE_ADDRESS, ring[leg], value)
+            end
+            update
+        end
+
+        def all(value)
+            LEDS.each do |l|
+                @bus.write(DEVICE_ADDRESS, l, value)
+            end
+            update
+        end
+
+        def clear
+            all(0x00)
         end
     end
 end

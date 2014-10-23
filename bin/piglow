@@ -1,0 +1,65 @@
+#!/usr/bin/env ruby
+class PiglowCLI
+
+    def initialize(args)
+        @options = []
+        parser = OptionParser.new do |opts|
+            opts.banner = "Usage: example.rb [options]"
+
+            opts.on("-a", "--all", "Control all leds") do |v|
+                @options[:method] = :change_all
+            end
+
+            opts.on("-l", "--led [NUMBER]",
+                  "The number of the led to light",
+                  "  (leds are numbered from inner rings to outer rings)") do |n|
+                @options[:method] = :change_led
+                @options[:specifier] = n
+            end
+            
+            opts.on("-r", "--ring [RING]",
+                  "The number of the ring to light",
+                  "  (rings are numbered from inside to outside 0-6)") do |n|
+                @options[:method] = :change_ring
+                @options[:specifier] = n
+            end
+
+            opts.on("-c", "--color [COLOR]",
+                  "The number of the led to light",
+                  "  (leds are numbered from inner rings to outer rings)") do |n|
+                @options[:method] = :change_color
+                @options[:specifier] = n
+            end
+
+            opts.on("-g", "--leg [LEG]",
+                  "The number of the leg to light") do |n|
+                @options[:method] = :change_leg
+                @options[:specifier] = n
+            end
+
+            opts.on("-b", "--brightness [BRIGHTNESS]",
+                  "The brightness to set (0-255)") do |b|
+                @options[:brightness] = b
+            end
+
+            # Boolean switch.
+            opts.on("-x", "--clear", "Turn off all lights") do |v|
+                @options[:method] = :clear
+            end
+        end
+
+        @opts = parser.parse!(args)
+
+        self
+    end
+
+    def run!
+
+    end
+
+end
+
+
+if __FILE__ == $0
+    piglow_cli = PiglowCLI.new(ARGV).run!
+end 
