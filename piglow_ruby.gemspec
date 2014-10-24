@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = PiglowRuby::VERSION
   spec.authors       = ["Greg Guida"]
   spec.email         = ["gregory.guida1@gmail.com"]
-#  spec.summary       = %q{TODO: Write a short summary. Required.}
+  spec.summary       = %q{A small gem to operate your Pimoroni Piglow}
 #  spec.description   = %q{TODO: Write a longer description. Optional.}
 #  spec.homepage      = ""
 #  spec.license       = "MIT"
