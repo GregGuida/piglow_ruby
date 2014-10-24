@@ -22,13 +22,13 @@ module PiglowRuby
         COLORS = [:white, :blue, :green, :yellow, :orange, :red]
  
         def initialize
-            @bus = bus = I2C.create("/dev/i2c-1")
+            @bus = I2C.create("/dev/i2c-1")
 
             # first we tell the SN3218 to enable output (turn on)
             @bus.write(DEVICE_ADDRESS, CMD_ENABLE_OUTPUT, 0x01)
 
             # then we ask it to enable each bank of LEDs (0-5, 6-11, and 12-17)
-            @bus.write(DEVICE_ADDRESS, CMD_ENABLE_LEDS, [0xFF, 0xFF, 0xFF])
+            @bus.write(DEVICE_ADDRESS, CMD_ENABLE_LEDS, 0xFF, 0xFF, 0xFF)
         end
 
         def update
